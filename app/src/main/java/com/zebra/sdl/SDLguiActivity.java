@@ -101,6 +101,12 @@ public class SDLguiActivity extends Activity implements
 	private String decodeStatString;
 	private static int decCount = 0;
 
+	//add for test
+	private long mStartTime;
+	private long mBarcodeCount = 0;
+	private long mConsumTime;
+
+
 	static
 	{
 		System.loadLibrary("IAL");
@@ -801,9 +807,9 @@ public class SDLguiActivity extends Activity implements
 		decodeStatString = new String("");
 		dspData("");
 		dspStat(R.string.decoding);
-		
 		try
 		{
+			mStartTime = System.currentTimeMillis();
 			bcr.startDecode(); // start decode (callback gets results)					
 		}
 		catch (Exception e)
@@ -870,6 +876,11 @@ public class SDLguiActivity extends Activity implements
      			}
 				decodeStatString += new String("[" + decodes + "] type: " + symbology + " len: " + length);
 				decodeDataString += new String(data);
+
+				mBarcodeCount++;
+				long consum = System.currentTimeMillis() - mStartTime;
+				mConsumTime += consum;
+				decodeDataString += "\n\r" + "本次消耗时间:" + consum + "毫秒" + "\n\r" + "平均速度:" + (mConsumTime / mBarcodeCount) + "毫秒/个";
 				/*try {
 					decodeDataString += new String(data,charsetName(data));
 				} catch (UnsupportedEncodingException e) {
@@ -903,6 +914,12 @@ public class SDLguiActivity extends Activity implements
 			Log.d("012", "ret="+byte2hex(data));
 			decodeStatString += new String("[" + decodes + "] type: " + symbology + " len: " + length);
 			decodeDataString += new String(data);
+
+			//add for test speed
+			mBarcodeCount++;
+			long consum = System.currentTimeMillis() - mStartTime;
+			mConsumTime += consum;
+			decodeDataString += "\n\r" + "本次消耗时间:" + consum + "毫秒" + "\n\r" +  "平均速度:" + (mConsumTime / mBarcodeCount) + "毫秒/个";
 				/*try {
 					decodeDataString += new String(data,charsetName(data));
 				} catch (UnsupportedEncodingException e) {
