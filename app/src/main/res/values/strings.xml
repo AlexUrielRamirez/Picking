@@ -13,14 +13,14 @@
     <string name="pnum">Number</string>
     <string name="pval">Value</string>
     <string name="sdl">SDLtestApp</string>
-    <string name="app_name">SDLgui</string>
+    <string name="app_name">SDL Etiflex</string>
     <string name="enable">EnableAll</string>
     <string name="disable">DisableAll</string>
     <string name="reading">Reading Pane</string>
     <string name="preview">Preview</string>
     <string name="DecImage">GetDecodedImage</string>
     <string name="stat">status</string>
-	<string name="handsfree">Hands Free</string>
+    <string name="handsfree">Hands Free</string>
     <string name="blank"></string>
     <string name="data">data</string>
     <string name="prop">Properties</string>
